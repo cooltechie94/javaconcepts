@@ -1,4 +1,4 @@
-Welcome to the sample project of JAVA concepts
+Welcome to the sample project illustrating a few JAVA concepts
 
 1) Functional Interfaces
 2) Lambdas
