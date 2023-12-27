@@ -3,6 +3,7 @@ package org.concepts;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +68,22 @@ public class Main {
 //        } catch(IOException e){
 //            e.printStackTrace();
 //        }
+
+//
+//        Stream<BigInteger> powersOfTwo = Stream.iterate(BigInteger.ONE, n -> n.multiply(BigInteger.TWO));
+//        powersOfTwo.limit(20).forEach(System.out::println);
+//
+//        Stream.iterate('A', letter -> letter <='Z', letter -> (char)(letter+1));
+////        The 3 conditions in the iterate function above reads like a for loop
+//
+//        Stream.Builder<String> builder = Stream.builder();
+//        builder.add("one");
+//        builder.add("two");
+//        builder.add("three");
+//        Stream<String> streambuilder = builder.build();
+//        streambuilder.forEach(System.out::println);
+
+
 
     }
 }
