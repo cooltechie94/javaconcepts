@@ -3,6 +3,7 @@ package org.concepts;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -83,6 +84,14 @@ public class Main {
 //        Stream<String> streambuilder = builder.build();
 //        streambuilder.forEach(System.out::println);
 
+        BigDecimal total = products.stream().map(Product::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("total is :"+ total);
+//        Using accumulator function
+        BigDecimal total2 = products.stream()
+                .reduce(BigDecimal.ZERO, (result,product) -> result.add(product.getPrice()), BigDecimal::add);
+
+        System.out.println("alternate total is :"+ total2);
 
 
     }
