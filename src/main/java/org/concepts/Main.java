@@ -6,14 +6,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -94,5 +91,37 @@ public class Main {
         System.out.println("alternate total is :"+ total2);
 
 
+//        Use of collect() in streams
+        List<String> productNames1 = products.stream().reduce(
+                new ArrayList<>(),
+                (list, product) -> {
+                  ArrayList<String> newList = new ArrayList<>();
+                  newList.add(product.getName());
+                  return newList;
+                },
+                (list1, list2) ->{
+                    ArrayList<String> newList = new ArrayList<>(list1);
+                    newList.addAll(list2);
+                    return newList;
+                }
+        );
+        System.out.println(productNames1);
+
+//        We can reduce lines of code by using collect() function
+        List<String> productNames2 = products.stream().collect(ArrayList::new,
+                (list, product) -> list.add(product.getName()),
+                ArrayList::addAll
+                );
+        System.out.println(productNames2);
+
+//        Collectors
+        Map<Category, BigDecimal> collectorMap = products.stream().collect(Collectors
+                .toMap(Product::getCategory,Product::getPrice, BigDecimal::add));
+
+        System.out.println("collectorMap:" + collectorMap);
+
+//        Grouping Stream Elements
+        Map<Category, List<String>> productsByCategory = products.stream()
+                .collect(Collectors.groupingBy(Product::getCategory, Collectors.mapping(Product::getName, Collectors.toList())));
     }
 }
